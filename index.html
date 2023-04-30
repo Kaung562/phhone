@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Kaung Myat Thu</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/190c5a71e5.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div class="container">
+                <nav>
+                    <img src="logo.png" class="logo">
+                 <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                   
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                </ul>
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p style="color: aliceblue;">Student </p>
+                <h1 style="color: aliceblue;">Hi, I am <span>Kaung Myat</span> <br>from Yangon,Myanmar</h1>
+            </div>
+            </div>
+        </div>
+        <!-- -----------about------------ --->
+        <div id="about">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="kokokok.jpeg">
+                </div>
+                <div class="about-col-2">
+                    <h1 style="color: aliceblue;">About me</h1>
+                    <p>I am currently learning about IT and computer science. I can do some simple project with html,css,java and python.I am also searching for a internship job.And I am also
+                       seeking about the data analysis.I also want a working experience in big company like google,microsoft.meta and apple etc..I am a young guy who is full of curiosities.
+                    </p>
+
+                    <div class="tab-titles">
+                       <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                       
+                       <p class="tab-links" onclick="opentab('education')">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>Software Engineering</span><br>Devploping software and Website</li>
+                            <li><span>UI/UX</span><br>can do a little in designing software and website</li>
+                            <li><span>Data analysis</span><br>Analyzing data</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>West Yangon Technological University</span><br>Second year</li>
+                            <li><span>Google</span><br>Data,Data ,everywhere</li>
+                            <li><span>KMD</span><br>Software Engineering</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+                  <!-- -----------contact------------ -->
+                <div id="contact">
+                 <div class="container">
+                 <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i>kaungmt61@gmail,com</p>
+                    <p><i class="fa-solid fa-phone"></i>09755266621</p>
+                    <div class="social-icons">
+                        <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href="Cv.pdf" download class="btn btn2">Download Cv</a>
+                </div>
+                    <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email">
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="Submit" class="btn btn2">Submit</button>
+                </form>
+                <span id='msg'></span>
+                </div>
+                 </div>
+    </div>
+</div>
+            </div> 
+            <div class="copyright">
+                <p>copyright © Kaungmyat.<i class="fa-brands fa-kickstarter"></i> cvweb</p>
+            </div>
+        </div>
+        <script>
+            var tablinks = document.getElementsByClassName("tab-links");
+            var tabcontents = document.getElementsByClassName("tab-contents");
+
+            function opentab(tabname){
+                for (tablink of tablinks){
+                    tablink.classList.remove("active-link");
+                }
+                for (tabcontent of tabcontents){
+                    tabcontent.classList.remove("active-tab");
+                }
+                event.currentTarget.classList.add("active-link");
+                document.getElementById(tabname).classList.add("active-tab");
+            }
+        </script>
+        <script>
+            var sidemenu = document.getElementById("sidemenu");
+
+            function openmenu(){
+                sidemenu.style.right ="0";
+            }
+            function closemenu(){
+                sidemenu.style.right ="-200px";
+            }
+        </script>
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbw76XhE_klt1xf2o0jzwRoUH93WRNaeZXSrMCevAK3sLutSzoxU2odkt_fv_BqBdsha/exec'
+            const form = document.forms['submit-to-google-sheet']
+          const msg = document.getElementById("msg")
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    msg.innerHTML ="Message sent successfully"
+                    setTimeout(function(){
+                        msg.innerHTML = ""
+                    },5000)
+                    form.reset()
+                })
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script>
+    </body>
+</html> 
